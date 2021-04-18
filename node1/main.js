@@ -2,6 +2,7 @@ const http = require("http");
 const fs = require("fs");
 const url = require("url");
 const qs = require("querystring");
+const sanitizeHtml = require("sanitize-html");
 
 const template = {
   HTML: function (title, list, body, control) {
@@ -59,10 +60,12 @@ const app = http.createServer(function (request, response) {
           "utf8",
           function (err, description) {
             const title = queryData.id;
+            const sanitizedTitle = sanitizeHtml(title);
+            const sanitizedDescription = sanitizeHtml(description);
             const html = template.HTML(
-              title,
+              sanitizeTitle,
               list,
-              `<h2>${title}</h2>${description}`,
+              `<h2>${sanitizedTitle}</h2>${sanitizedDescription}`,
               ` <a href="/create">create</a>
                 <a href="/update?id=${title}">update</a>
                 <form action="delete_process" method="post">
