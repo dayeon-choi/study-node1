@@ -67,7 +67,7 @@ const app = http.createServer(function (request, response) {
               list,
               `<h2>${sanitizedTitle}</h2>${sanitizedDescription}`,
               ` <a href="/create">create</a>
-                <a href="/update?id=${title}">update</a>
+                <a href="/update?id=${sanitizedTitle}">update</a>
                 <form action="delete_process" method="post">
                   <input type="hidden" name="id" value="${title}">
                   <input type="submit" value="delete">
