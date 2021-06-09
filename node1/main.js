@@ -63,7 +63,7 @@ const app = http.createServer(function (request, response) {
             const sanitizedTitle = sanitizeHtml(title);
             const sanitizedDescription = sanitizeHtml(description);
             const html = template.HTML(
-              sanitizeTitle,
+              sanitizedTitle,
               list,
               `<h2>${sanitizedTitle}</h2>${sanitizedDescription}`,
               ` <a href="/create">create</a>
